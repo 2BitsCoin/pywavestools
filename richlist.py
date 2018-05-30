@@ -1,7 +1,8 @@
 import requests
 import argparse
 
-NODE = 'http://127.0.0.1:6869'
+NODE = 'http://localhost:6869'
+API_KEY = ''
 
 parser = argparse.ArgumentParser(description='Waves Rich List')
 parser.add_argument('-t', '--top', type=int, help='lists only the specified top positions')
@@ -12,7 +13,7 @@ if args.top:
 else:
     top = -1
 
-states = requests.get('%s/debug/state' % NODE).json()
+states = requests.get('%s/debug/state' % NODE, headers={ "api_key": API_KEY}).json()
 print("-" * 64)
 print(str.center("Waves Rich List", 64))
 if top > 0:
